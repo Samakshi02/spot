@@ -67,6 +67,7 @@ export function Puzzle7Modified({ onFound, foundIds, hintingId }) {
             {chartBars.map((h, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                 <div
+                  {...(i === 3 ? { 'data-spot-target': true } : {})}
                   className="w-full bg-indigo-500 rounded-sm"
                   style={{ height: `${(i === 3 ? 35 : h) * 0.8}px` }}
                 />
