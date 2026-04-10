@@ -92,8 +92,8 @@ export function Puzzle10Modified({ onFound, foundIds, hintingId }) {
                         </span>
                       )}
                       {isDiff2 ? (
-                        <DiffZone id={2} index={2} onFound={onFound} found={foundIds.includes(2)} hinting={hintingId === 2}>
-                          <span className={`text-[10px] font-bold ${card.priorityClass}`}>!</span>
+                        <DiffZone id={2} index={2} onFound={onFound} found={foundIds.includes(2)} hinting={hintingId === 2} className="-m-2 p-2">
+                          <span data-spot-target className={`text-[10px] font-bold ${card.priorityClass}`}>!</span>
                         </DiffZone>
                       ) : (
                         card.priority && (
