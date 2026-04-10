@@ -17,7 +17,7 @@ export function Puzzle1Modified({ onFound, foundIds, hintingId }) {
       title="Wireless Headphones Plus"
       price="$89.99"
       buttonColorClass="bg-emerald-500"
-      renderTitle={(text) => (
+      renderTitle={() => (
         <DiffZone
           id={3}
           index={3}
@@ -25,7 +25,7 @@ export function Puzzle1Modified({ onFound, foundIds, hintingId }) {
           found={foundIds.includes(3)}
           hinting={hintingId === 3}
         >
-          {text}
+          Wireless Headphones <span data-spot-target>Plus</span>
         </DiffZone>
       )}
       renderStars={() => (
