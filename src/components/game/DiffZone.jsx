@@ -60,28 +60,55 @@ export function DiffZone({
   const circleCenterX = rect ? rect.left + rect.width / 2 : 0
   const circleCenterY = rect ? rect.top + rect.height / 2 : 0
 
+  // Found state uses a tight pill that hugs the target so it doesn't
+  // visually block adjacent diffs. Hint state keeps the big round ring
+  // for attention.
+  const FOUND_PAD_X = 6
+  const FOUND_PAD_Y = 4
+  const foundWidth = rect ? rect.width + FOUND_PAD_X * 2 : 0
+  const foundHeight = rect ? rect.height + FOUND_PAD_Y * 2 : 0
+  const foundLeft = rect ? rect.left - FOUND_PAD_X : 0
+  const foundTop = rect ? rect.top - FOUND_PAD_Y : 0
+
   const portalContent = showOverlay && (
     <div className="pointer-events-none fixed z-[9999]" aria-hidden>
-      {/* Hint ring (black) or Found circle (green) */}
-      <div
-        className="rounded-full border-2 animate-[spot-pop_0.3s_ease-out]"
-        style={{
-          position: 'fixed',
-          left: circleCenterX - circleSize / 2,
-          top: circleCenterY - circleSize / 2,
-          width: circleSize,
-          height: circleSize,
-          borderColor: found ? '#5a7a4a' : '#1a1f2e',
-          backgroundColor: found ? 'rgba(90, 122, 74, 0.18)' : 'transparent',
-        }}
-      />
+      {found ? (
+        /* Found — tight pill hugging the target */
+        <div
+          className="animate-[spot-pop_0.3s_ease-out]"
+          style={{
+            position: 'fixed',
+            left: foundLeft,
+            top: foundTop,
+            width: foundWidth,
+            height: foundHeight,
+            border: '2px solid #5a7a4a',
+            backgroundColor: 'rgba(90, 122, 74, 0.14)',
+            borderRadius: 9999,
+          }}
+        />
+      ) : (
+        /* Hint — round ring, bigger for visibility */
+        <div
+          className="rounded-full border-2 animate-[spot-pop_0.3s_ease-out]"
+          style={{
+            position: 'fixed',
+            left: circleCenterX - circleSize / 2,
+            top: circleCenterY - circleSize / 2,
+            width: circleSize,
+            height: circleSize,
+            borderColor: '#1a1f2e',
+            backgroundColor: 'transparent',
+          }}
+        />
+      )}
       {/* Numbered badge when found */}
       {found && (
         <div
           className="fixed"
           style={{
-            left: circleCenterX + circleSize / 2 - 10,
-            top: circleCenterY - circleSize / 2 - 10,
+            left: foundLeft + foundWidth - 10,
+            top: foundTop - 10,
           }}
         >
           <Badge number={index} />
