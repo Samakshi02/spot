@@ -50,6 +50,7 @@ export function HUD({
   soundEnabled,
   onHint,
   onToggleSound,
+  onExit,
 }) {
   const total = puzzle.totalDifferences
   const progressPct = (foundCount / total) * 100
@@ -74,6 +75,21 @@ export function HUD({
       <span className="inline-flex items-center justify-center min-w-4 h-4 px-1 rounded-full bg-[#b8893a]/20 text-[10px] font-bold text-[#8a6526] tabular-nums">
         {hintsRemaining}
       </span>
+    </button>
+  )
+
+  const exitButton = (
+    <button
+      type="button"
+      onClick={onExit}
+      className="w-9 h-9 shrink-0 flex items-center justify-center rounded-full border border-[#1a1f2e]/15 bg-[#fdf9ee] text-[#6b6456] hover:bg-[#f5ecd7] hover:border-[#1a1f2e]/30 transition-colors"
+      title="Exit to archive"
+      aria-label="Exit to archive"
+    >
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 11.5L12 4l9 7.5" />
+        <path d="M5 10v10h14V10" />
+      </svg>
     </button>
   )
 
@@ -109,6 +125,7 @@ export function HUD({
             <div className="flex items-center gap-1.5 shrink-0">
               {clueButton}
               {soundButton}
+              {exitButton}
             </div>
           </div>
 
@@ -185,6 +202,7 @@ export function HUD({
             <div className="flex items-center gap-1.5">
               {clueButton}
               {soundButton}
+              {exitButton}
             </div>
           </div>
         </div>

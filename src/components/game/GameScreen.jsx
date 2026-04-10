@@ -96,6 +96,12 @@ export function GameScreen({ state, actions }) {
         onWrongTap={handleWrongTap}
         onHint={handleHint}
         onToggleSound={actions.toggleSound}
+        onExit={() => {
+          const confirmed = window.confirm(
+            'Leave this case? Your progress on this puzzle will be lost, but your score so far will be kept.',
+          )
+          if (confirmed) actions.backToMenu()
+        }}
       />
 
       <div className="puzzle-panels-wrapper w-full">
