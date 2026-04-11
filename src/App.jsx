@@ -4,6 +4,7 @@ import { HowToPlay } from './components/menu/HowToPlay'
 import { GameScreen } from './components/game/GameScreen'
 import { ResultsScreen } from './components/game/ResultsScreen'
 import { FinalScoreScreen } from './components/game/FinalScoreScreen'
+import { BuiltBy } from './components/ui/BuiltBy'
 
 function App() {
   const { state, actions } = useGameState()
@@ -29,6 +30,7 @@ function App() {
           )}
         </div>
       </main>
+      <BuiltBy />
     </div>
   )
 }
